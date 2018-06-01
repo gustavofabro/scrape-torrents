@@ -24,8 +24,19 @@ input[type=submit] {
     padding: 5px 20px;
     margin: 8px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0 5px #999;
+}
+
+input[type=submit]:hover{
+    background-color: #3e8e41
+}
+
+input[type=submit]:active {
+    background-color: #3e8e41;
+    box-shadow: 0 4px #666;
+    transform: translateY(1px);
 }
 
 .input-disable {
