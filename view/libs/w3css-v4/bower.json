@@ -1,0 +1,23 @@
+{
+  "name": "w3css-v4",
+  "homepage": "https://github.com/betofloresbaca/w3css-v4",
+  "authors": [
+    "Luis Alberto Flores Baca <betofloresbaca@gmail.com>"
+  ],
+  "description": "W3 CSS library V4.",
+  "main": "w3.css",
+  "keywords": [
+    "w3",
+    "css",
+    "w3css",
+    "v4"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
