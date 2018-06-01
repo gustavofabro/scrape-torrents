@@ -1,2 +1,4 @@
 node_modules
 view/libs
+npm-debug.log
+.vscode
