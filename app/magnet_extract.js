@@ -54,14 +54,28 @@ function extract_magnet(urls, cbResult) {
         if (err) {
             console.log(err)
         }
+        
+        function getTorrentName(link) {
+            let name = new url_parser.URL(link).searchParams.get('dn')
+
+            if (!name) {
+                let dnF = link.substring(link.indexOf('dn='))
+
+                name = decodeURI(dnF.substring(3, dnF.indexOf('&amp')))
+            }
+
+            return name;
+        }
 
         let magnet_links = res.reduce((accum, curr) => {
             return accum.concat(curr);
         }).map((link, i) => {          
+            
+
             return {
                 id: i + 1,
                 uri: link,
-                name: new url_parser.URL(link).searchParams.get('dn')
+                name: getTorrentName(link)
             }
         })
 
