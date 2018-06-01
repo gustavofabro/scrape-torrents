@@ -1,5 +1,7 @@
 const request = require('request')
 const cheerio = require('cheerio')
+const async = require('async')
+const url_parser = require('url')
 
 let options = {
     url: '',
@@ -8,7 +10,7 @@ let options = {
     }
 }
 
-let getSeeds = (query, cbResult) => {
+function getSeeds(query, cbResult) {
     options.url = `https://www.google.com.br/search?q=${query.replace(/ /g, '+')}`
 
     request(options, (err, resp, body) => {
@@ -22,13 +24,14 @@ let getSeeds = (query, cbResult) => {
         $('div.rc h3.r a').each((i, elem) => {
             urls.push(elem.attribs['href'])
         })
+        console.log('Google ok')
 
         extract_magnet(urls, cbResult)
     })
 }
 
-let extract_magnet = (urls, cbResult) => {
-    urls.forEach((url) => {
+function extract_magnet(urls, cbResult) {
+    function httpGet(url, callback) {
         options.url = url
 
         request(options, (err, resp, body) => {
@@ -43,13 +46,31 @@ let extract_magnet = (urls, cbResult) => {
                 links.push(elem.attribs['href'])
             })
 
-            cbResult(links)
+            callback(null, links)
         })
+    }
+
+    async.map(urls, httpGet, function (err, res) {
+        if (err) {
+            console.log(err)
+        }
+
+        let magnet_links = res.reduce((accum, curr) => {
+            return accum.concat(curr);
+        }).map((link, i) => {          
+            return {
+                id: i + 1,
+                uri: link,
+                name: new url_parser.URL(link).searchParams.get('dn')
+            }
+        })
+
+        cbResult({ urls: magnet_links})
     })
 }
 
 module.exports = {
-    extract_magnet: (urls, query, callback) => {
+    extract_torrents: (urls, query, callback) => {
         if (!urls.length) {
             getSeeds(query, callback)
         } else {

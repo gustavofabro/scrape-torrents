@@ -1,0 +1,10 @@
+{
+    "name": "scrape_torrents",
+    "version": "1.0.0",
+    "dependencies": {
+        "font-awesome": "latest",
+        "animate.css": "latest",
+        "angular": "latest",
+        "w3css-v4": "latest"
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "scrape_torrents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/gustavofabro.f/scrape_torrent.git"
+  },
+  "author": "Gustavo Fabro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/gustavofabro.f/scrape_torrent/issues"
+  },
+  "homepage": "https://gitlab.com/gustavofabro.f/scrape_torrent#README",
+  "dependencies": {
+    "async": "^2.6.1",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "request": "^2.87.0"
+  }
+}
