@@ -11,7 +11,7 @@ let options = {
 }
 
 function getSeeds(query, cbResult) {
-    options.url = `https://www.google.com.br/search?q=${query.replace(/ /g, '+')}`
+    options.url = `https://www.google.com.br/search?q=${query.replace(/ /g, '+')}+download+torrent`
 
     request(options, (err, resp, body) => {
         if (err) {
