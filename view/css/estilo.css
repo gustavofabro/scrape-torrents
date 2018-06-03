@@ -47,6 +47,13 @@ input[type=submit]:active {
     margin: 5px
 }
 
+.alert-no-result {
+    text-align: center;
+    font-style: italic;
+    color: #444;
+    margin-top: 50px;
+}
+
 /*download icon*/
 
 @keyframes download {

@@ -1,8 +1,10 @@
 angular.module('MainCtrl', []).controller('MainController', function ($scope, service) {
     $scope.tagline = 'There and back again'
-    $scope.torrents_links = [];
+    $scope.torrents_links = []
     $scope.query = ''
-    $scope.isDownloading = false;
+    $scope.isDownloading = false
+    $scope.hasNoResults = false
+    $scope.noResultAlert = 'Nenhum magnet link encontrado para a pesquisa informada'
 
     $scope.getTorrents = () => {
         let fn = null;
@@ -13,12 +15,16 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, se
             fn = service.get_by_query
         }
 
-        $scope.isDownloading = true;
-        $scope.torrents_links = [];
+        resetValues();
 
         fn($scope.query, res => {
             $scope.isDownloading = false;
-            $scope.torrents_links = res.data.urls
+            
+            if (res.data.urls.length) {
+                $scope.torrents_links = res.data.urls
+            } else {
+                $scope.hasNoResults = true;
+            }
         })
     }
 
@@ -29,5 +35,11 @@ angular.module('MainCtrl', []).controller('MainController', function ($scope, se
         } catch (e) {
             return false
         }
+    }
+
+    function resetValues() {
+        $scope.isDownloading = true;
+        $scope.hasNoResults = false;
+        $scope.torrents_links = [];
     }
 });

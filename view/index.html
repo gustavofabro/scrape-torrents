@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Meu torrent</title>
     
-    <!-- CSS -->
+    <!--CSS-->
     <link rel="stylesheet" href="css/estilo.css">
 
-    <!-- JS -->
+    <!--JS-->
     <script type="text/javascript" src="libs/angular/angular.min.js"></script>
 
     <!--Font Awesome-->
@@ -20,7 +20,6 @@
     <script type="text/javascript" src="js/services/MainService.js"></script>
 </head>
 <body ng-controller="MainController" ng-app="sampleApp">
-    
     <div class="container">
         <form ng-submit="getTorrents()">
             <input class="input" type="text" ng-model="query" placeholder="Insira a URL ou termo...">
@@ -34,11 +33,14 @@
                 </li>
             </div>        
         </ul>
-        
-    </div>
 
-    <div ng-show="isDownloading" class="download-icon">
-        <i class="fa fa-arrow-down"></i>
-    </div>
+        <div ng-show="hasNoResults" class="alert-no-result">
+            <p>{{ noResultAlert }}</p>
+        </div>
+
+        <div ng-show="isDownloading" class="download-icon">
+            <i class="fa fa-arrow-down"></i>
+        </div>
+    </div>        
 </body>
 </html>

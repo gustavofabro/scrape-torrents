@@ -70,8 +70,6 @@ function extract_magnet(urls, cbResult) {
         let magnet_links = res.reduce((accum, curr) => {
             return accum.concat(curr);
         }).map((link, i) => {          
-            
-
             return {
                 id: i + 1,
                 uri: link,
@@ -79,7 +77,7 @@ function extract_magnet(urls, cbResult) {
             }
         })
 
-        cbResult({ urls: magnet_links})
+        cbResult({ urls: magnet_links })
     })
 }
 
