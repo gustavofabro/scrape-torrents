@@ -1,15 +1,12 @@
-body {
-    background-color: #f4f5f9; 
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
-footer {
-    position: fixed;
-    background-color: #4e4e4e;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    color: #FFF
+
+body {
+    background-color: #f4f5f9; 
 }
 
 .container {
@@ -30,7 +27,6 @@ footer {
     width: 100%;
     border-radius: 4px;
     border: 1px solid gray;
-    box-sizing: border-box;
 }
 
 input[type=submit] {
@@ -92,3 +88,38 @@ input[type=submit]:active {
     text-align: center;
 }
 
+/* Footer */
+
+footer {
+    position: fixed;
+    background-color: #4e4e4e;
+    width: 100%;
+    bottom: 0;
+    height: 40px;
+    left: 0;
+    color: #FFF;
+}
+
+.copyright {
+    margin-top: 3px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.contato{
+    float:right;
+    text-align:left;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.left, .right {
+    width: 25%;
+}
+
+.middle {
+    width: 50%;
+}

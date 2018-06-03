@@ -24,7 +24,7 @@
         <div class="description">Extraia links magnéticos de um site ou pesquise pelo torrent!</div>
         
         <form ng-submit="getTorrents()">
-            <input class="input" type="text" ng-model="query" placeholder="Insira a URL ou termo...">
+            <input class="input" type="text" ng-model="query" required placeholder="Insira a URL ou termo...">
             <input type="submit" value="Extrair magnet links">
         </form>
 
@@ -46,7 +46,15 @@
     </div>        
 
     <footer>
-        <p class="copyright">© Copyright 2018 - Meu Torrent</p>
-    </footer>
+        <div class="column left">
+            <p class="copyright">Smoking Snakes</p>
+        </div>
+        <div class="column middle">
+                <p class="copyright">© Copyright 2018 - Meu Torrent</p>
+        </div>
+        <div class="column right">
+                <p class="copyright">Contato</p>
+        </div>
+    <cfootec>
 </body>
 </html>

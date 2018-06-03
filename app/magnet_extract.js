@@ -24,7 +24,6 @@ function getSeeds(query, cbResult) {
         $('div.rc h3.r a').each((i, elem) => {
             urls.push(elem.attribs['href'])
         })
-        console.log('Google ok')
 
         extract_magnet(urls, cbResult)
     })
