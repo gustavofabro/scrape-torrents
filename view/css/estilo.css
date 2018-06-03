@@ -1,11 +1,27 @@
 body {
-    background-color: #F2EFE4; 
+    background-color: #f4f5f9; 
+}
+
+footer {
+    position: fixed;
+    background-color: #4e4e4e;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: #FFF
 }
 
 .container {
     margin: auto;
     width: 600px;
     padding: 10px;
+}
+
+.description {
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .input {
@@ -41,6 +57,12 @@ input[type=submit]:active {
 
 .input-disable {
     background-color: gray;
+}
+
+.list {
+    max-height: 400px;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 .item-list {
