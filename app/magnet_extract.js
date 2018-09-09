@@ -15,7 +15,8 @@ function getSeeds(query, cbResult) {
 
     request(options, (err, resp, body) => {
         if (err) {
-            console.log('Erro: ' + err);
+            console.log('Erro: ' + err)
+            return
         }
 
         let urls = []
@@ -34,11 +35,13 @@ function extract_magnet(urls, cbResult) {
         options.url = url
 
         request(options, (err, resp, body) => {
+            let links = []
+
             if (err) {
-                console.log('Erro: ' + err);
+                callback(null, links)
+                return;
             }
 
-            let links = []
             const $ = cheerio.load(body)
 
             $('a[href^="magnet:"]').each((i, elem) => {
@@ -52,6 +55,8 @@ function extract_magnet(urls, cbResult) {
     async.map(urls, httpGet, function (err, res) {
         if (err) {
             console.log(err)
+            cbResult({ urls: [] })
+            return
         }
         
         function getTorrentName(link) {

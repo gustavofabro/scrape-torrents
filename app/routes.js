@@ -3,12 +3,14 @@ const path = require('path')
 
 module.exports = function (app) {
     app.get('/api/magnets_query/:query', (req, res, next) => {
+        console.log(`Recebendo pedido de : ${req.params.query}`)
         magnet_extract.extract_torrents([], req.params.query, urls => {
             res.send(JSON.stringify(urls))
         })
     })
 
     app.get('/api/magnets_urls/:urls', (req, res, next) => {
+        console.log(`Recebendo pedido de : ${req.params.urls}`)
         magnet_extract.extract_torrents([req.params.urls], '', urls => {
             res.send(JSON.stringify(urls))
         })
