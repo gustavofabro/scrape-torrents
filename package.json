@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/gustavofabro.f/scrape_torrent.git"
+    "url": "git+git@github.com:gustavofabro/scrape-torrents.git"
   },
   "author": "Gustavo Fabro",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/gustavofabro.f/scrape_torrent/issues"
+    "url": "https://github.com/gustavofabro/scrape-torrents/issues"
   },
-  "homepage": "https://gitlab.com/gustavofabro.f/scrape_torrent#README",
+  "homepage": "https://github.com/gustavofabro/scrape-torrents",
   "dependencies": {
     "async": "^2.6.1",
     "cheerio": "^1.0.0-rc.2",
