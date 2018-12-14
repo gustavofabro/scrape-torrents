@@ -10,6 +10,8 @@ let options = {
     }
 }
 
+const googleResultSelector = 'div.rc a'
+
 function getSeeds(query, cbResult) {
     options.url = `https://www.google.com.br/search?q=${query.replace(/ /g, '+')}+download+torrent`
 
@@ -22,8 +24,8 @@ function getSeeds(query, cbResult) {
         let urls = []
         const $ = cheerio.load(body)
 
-        $('div.rc h3.r a').each((i, elem) => {
-            urls.push(elem.attribs['href'])
+        $(googleResultSelector).each((i, result) => {
+            urls.push(result.attribs['href'])
         })
 
         extract_magnet(urls, cbResult)
@@ -31,7 +33,7 @@ function getSeeds(query, cbResult) {
 }
 
 function extract_magnet(urls, cbResult) {
-    function httpGet(url, callback) {
+    function getMagnetLinks(url, callback) {
         options.url = url
 
         request(options, (err, resp, body) => {
@@ -52,37 +54,39 @@ function extract_magnet(urls, cbResult) {
         })
     }
 
-    async.map(urls, httpGet, function (err, res) {
+    async.map(urls, getMagnetLinks, function (err, res) {
         if (err) {
             console.log(err)
             cbResult({ urls: [] })
             return
         }
         
-        function getTorrentName(link) {
-            let name = new url_parser.URL(link).searchParams.get('dn')
-
-            if (!name) {
-                let dnF = link.substring(link.indexOf('dn='))
-
-                name = decodeURI(dnF.substring(3, dnF.indexOf('&amp')))
-            }
-
-            return name;
-        }
-
-        let magnet_links = res.reduce((accum, curr) => {
-            return accum.concat(curr);
-        }).map((link, i) => {          
-            return {
-                id: i + 1,
-                uri: link,
-                name: getTorrentName(link)
-            }
-        })
-
-        cbResult({ urls: magnet_links })
+        cbResult({ urls: getMagnetDto(res) })
     })
+}
+
+function getMagnetDto(googleMagnetRes) {
+    return googleMagnetRes.reduce((accum, curr) => {
+        return accum.concat(curr);
+    }).map((link, i) => {
+        return {
+            id: i + 1,
+            uri: link,
+            name: getTorrentName(link)
+        }
+    })
+}
+
+function getTorrentName(link) {
+    let name = new url_parser.URL(link).searchParams.get('dn')
+
+    if (!name) {
+        let dnF = link.substring(link.indexOf('dn='))
+
+        name = decodeURI(dnF.substring(3, dnF.indexOf('&amp')))
+    }
+
+    return name;
 }
 
 module.exports = {
